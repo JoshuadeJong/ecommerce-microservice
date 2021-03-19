@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+    <div class="mdl-grid">
+        {# Item Info #}
+        <div class="mdl-cell mdl-cell--8-col white mdl-shadow--2dp">
+            <div class="content">
+                <h3>{{ item.name }}</h3>
+                <p>Desc: {{ item.description }}</p>
+            </div>
+        </div>
+
+        {# Buy Item Menu #}
+        <div class="mdl-cell mdl-cell--4-col white mdl-shadow--2dp">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <fieldset>
+                    <div class="content mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <h5>Purchase</h5>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col left-align">
+                            <h6>Price: ${{ item.price }}</h6>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col left-align">
+                            <h6>Stock: {{ item.stock }} units</h6>
+                        </div>
+
+
+                        {# Item Quantity #}
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+                                 style="width: 100%">
+                                {{ form.quantity.label(class="mdl-textfield__label", for="item_quantity") }}
+
+                                {% if form.quantity.errors %}
+                                    {{ form.quantity(classs="mdl-textfield__input is-invalid", pattern="-?[0-9]*?", id="item_quantity") }}
+                                    <span class="mdl-textfield__error">
+                                {% for error in form.quanity.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </span>
+                                {% else %}
+                                    {{ form.quantity(class="mdl-textfield__input", pattern="-?[0-9]*?", id="item_quantity") }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        {# Buy Item #}
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="right-align">
+                                {{ form.submit(class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect", id="item_buy") }}
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        {# Modify Item #}
+        <!--
+        <div class="mdl-cell mdl-cell--4-col white mdl-shadow--2dp">
+            <div class="content mdl-grid">
+                <div class="mdl-cell mdl-cell--12-col">
+                    <h5>Admin - Manage Item</h5>
+                </div>
+
+                <div class="mdl-cell mdl-cell--6-col">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect green lighten-2">
+                        Edit Item
+                    </button>
+                </div>
+
+                <div class="mdl-cell mdl-cell--6-col">
+                    <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect red lighten-2" href="{{ url_for("item.delete", item_id=item['id']) }}">
+                        Delete Item
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        -->
+
+    </div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

@@ -1,0 +1,22 @@
+# Base Image
+FROM python:3.9
+
+# SEt Working Directory
+WORKDIR /src
+
+# Create Directories
+RUN mkdir api
+
+# Copy Files
+COPY .env .env
+COPY requirements.txt requirements.txt
+COPY run.py run.py
+COPY api/. api/.
+
+# Install Requirements
+RUN pip install -r requirements.txt
+
+# Start application
+ENV PYTHONPATH="/src:${PYTHONPATH}"
+CMD ["python3", "run.py"]
+

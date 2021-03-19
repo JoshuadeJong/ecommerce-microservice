@@ -1,0 +1,16 @@
+# Config Files
+python-dotenv
+
+# Database
+redis
+elasticsearch
+
+# Api
+uvicorn
+fastapi
+
+# Frontend
+flask
+flask-login
+flask-wtf
+

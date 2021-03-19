@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {# Tab Title #}
+    {% if title %}
+        <title>Cloud Store</title>
+    {% else %}
+        <title>{{ title }}</title>
+    {% endif %}
+
+
+    {# Materialize Design Lite #}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script type="text/javascript" src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    {# Font #}
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
+    {# Custom CSS #}
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='scss/layout.css') }}">
+
+    {# Head Content #}
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+{# Header #}
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header blue darken-4">
+        <div class="mdl-layout__header-row blue darken-4">
+            <!-- Title -->
+            <span class="mdl-layout-title">Cloud Store</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+                <a class="mdl-navigation__link" href="{{ url_for("base.home") }}">Home</a>
+                <a class="mdl-navigation__link" href="{{ url_for("shop.view") }}">Shop</a>
+                <a class="mdl-navigation__link" href="{{ url_for("cart.view") }}">Cart</a>
+            </nav>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Pages</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="{{ url_for("base.home") }}">Home</a>
+            <a class="mdl-navigation__link" href="{{ url_for("shop.view") }}">Shop</a>
+            <a class="mdl-navigation__link" href="{{ url_for("cart.view") }}">Cart</a>
+            <a class="mdl-navigation__link" href="{{ url_for("item.create") }}">Create Items</a>
+        </nav>
+    </div>
+
+    <main class="mdl-layout__content grey lighten-2">
+        <div class="page-content">
+
+            {# Page Content #}
+            {% block body %}
+            {% endblock %}
+        </div>
+    </main>
+
+    {# Flash Messages #}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in  messages %}
+                <div id="flash_message" style="display: none">{{ message }}</div>
+                <div id="flash_category" style="display: none">{{ category }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div id="snackbar" class="mdl-snackbar mdl-js-snackbar">
+        <div class="mdl-snackbar__text"></div>
+        <button class="mdl-snackbar__action" type="button"></button>
+    </div>
+
+</div>
+</body>
+
+{# Custom Javascript #}
+<script type="text/javascript" src="{{ url_for('static', filename='js/layout.js') }}"></script>
+
+{# Scritp Content #}
+{% block scripts %}
+{% endblock %}
+
+</html>

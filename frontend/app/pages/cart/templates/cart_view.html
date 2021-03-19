@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col">
+            <h5>Shopping Cart</h5>
+        </div>
+
+        {% if cart and cart['items']|length > 0 %}
+            {# Items #}
+            <div class="mdl-cell mdl-cell--12-col mdl-grid" style="padding: 0; margin: 0">
+                {% for item in cart['items'] %}
+                    <div class="mdl-cell mdl-cell--12-col white mdl-shadow--2dp">
+                        <div class="mdl-grid">
+                            {# Item Info #}
+                            <div class="mdl-cell mdl-cell--6-col">
+                                <h4 style="margin: 0; margin-bottom: 8px;">{{ item['name'] }}</h4>
+                                <span style="font-weight: 300; font-size: medium">${{ item['price'] }}</span>
+                            </div>
+                            {# Quantity #}
+                            <div class="mdl-cell mdl-cell--5-col">
+                                <span style="font-weight: 300; font-size: medium; margin-bottom: 8px;">Quantity: {{ item['quantity'] }}</span>
+                                <br>
+                                <span style="font-weight: 300; font-size: medium">Total Price: $ {{ (item['quantity']*item['price']) }}</span>
+                            </div>
+                            {# Delete #}
+                            <!--
+                            <div class="mdl-cell mdl-cell--1-col">
+                                 <a class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored red-text" href="{{ url_for("cart.delete", item_id=item['id']) }}">
+                                    <i class="material-icons">delete</i>
+                                </a>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="mld-cell mdl-cell--12-col">
+                <div class="content">
+                    <span style="font-weight: 300; font-size: medium">Total Price: ${{ cart['total_price'] }}</span>
+                </div>
+            </div>
+
+            <div class="mld-cell mdl-cell--12-col">
+                <div class="content">
+                    <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect green lighten-2"
+                    href="{{ url_for("cart.checkout") }}">
+                        Checkout
+                    </a>
+                </div>
+            </div>
+
+
+        {% else %}
+            <div class="mdl-cell mdl-cell--12-col">
+                Your cart is empty.
+            </div>
+        {% endif %}
+
+    </div>
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}

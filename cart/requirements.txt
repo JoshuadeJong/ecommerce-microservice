@@ -1,0 +1,9 @@
+# Fast API
+fastapi
+uvicorn
+
+# Config
+python-dotenv
+
+# V1
+redis

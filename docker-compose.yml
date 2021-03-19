@@ -1,0 +1,59 @@
+version: '3.9'
+
+services:
+  # Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.app
+    container_name: frontend
+    hostname: frontend
+    ports:
+      - 5600:5600
+    restart: always
+
+  # Catalog
+  catalog_api:
+    build:
+      context: ./catalog
+      dockerfile: Dockerfile.api
+    container_name: catalog_api
+    hostname: catalog_api
+    ports:
+      - 5601:5600
+    restart: always
+
+  catalog_node_01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.2
+    container_name: catalog_node_01
+    hostname: catalog_node_01
+    environment:
+      - node.name=catalog_node_01
+      - cluster.name=catalog_cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9200:9200
+
+  # Cart
+  cart_api:
+    build:
+      context: ./cart
+      dockerfile: Dockerfile.api
+    container_name: cart_api
+    hostname: cart_api
+    ports:
+      - 5602:5600
+    restart: always
+
+  cart_cache_01:
+    image: library/redis:latest
+    container_name: cart_cache_01
+    hostname: cart_cache_01
+    restart: always
+

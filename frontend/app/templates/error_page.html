@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <h2>
+            {% block error_title %}
+            {% endblock %}
+        </h2>
+        <p>
+            {% block error_text %}
+            {% endblock %}
+        </p>
+    </div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

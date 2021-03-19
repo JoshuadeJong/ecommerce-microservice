@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--12-col">
+                    <h5>Create Item</h5>
+                </div>
+
+                {# item id #}
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        {{ form.id.label(class="mdl-textfield__label", for="item_id") }}
+
+                        {% if form.id.errors %}
+                            {{  form.id(class="mdl-textfield__input is-invalid", id="item_id") }}
+                            <span class="mdl-textfield__error">
+                                {% for error in form.id.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </span>
+                        {% else %}
+                            {{ form.id(class="mdl-textfield__input", id="item_id") }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                {# item name #}
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        {{ form.name.label(class="mdl-textfield__label", for="item_name") }}
+
+                        {% if form.name.errors %}
+                            {{  form.name(class="mdl-textfield__input is-invalid", id="item_name") }}
+                            <span class="mdl-textfield__error">
+                                {% for error in form.name.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </span>
+                        {% else %}
+                            {{ form.name(class="mdl-textfield__input", id="item_name") }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                {# item description #}
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        {{ form.description.label(class="mdl-textfield__label", for="item_description") }}
+
+                        {% if form.description.errors %}
+                            {{  form.description(class="mdl-textfield__input is-invalid", type="text", rows= "5", id="item_description") }}
+                            <span class="mdl-textfield__error">
+                                {% for error in form.description.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </span>
+                        {% else %}
+                            {{ form.description(class="mdl-textfield__input", type="text", rows= "5", id="item_description") }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                {# item price #}
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        {{ form.price.label(class="mdl-textfield__label", for="item_price") }}
+
+                        {% if form.price.errors %}
+                            {{  form.price(class="mdl-textfield__input is-invalid", type="text", rows= "5", id="item_price") }}
+                            <span class="mdl-textfield__error">
+                                {% for error in form.price.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </span>
+                        {% else %}
+                            {{ form.price(class="mdl-textfield__input", type="text", rows= "5", id="item_price") }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                {# item stock #}
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        {{ form.stock.label(class="mdl-textfield__label", for="item_stock") }}
+
+                        {% if form.stock.errors %}
+                            {{  form.stock(class="mdl-textfield__input is-invalid", id="item_stock") }}
+                            <span class="mdl-textfield__error">
+                                {% for error in form.stock.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </span>
+                        {% else %}
+                            {{ form.stock(class="mdl-textfield__input", id="item_stock") }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                {# Submit #}
+                <div class="mdl-cell mdl-cell--12-col">
+                    {{ form.submit(class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect", id="item_buy") }}
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}

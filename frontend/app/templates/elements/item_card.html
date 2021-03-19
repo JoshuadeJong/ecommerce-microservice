@@ -1,0 +1,22 @@
+<div class="mdl-card mdl-cell white mdl-shadow--2dp" style="max-width: 250px">
+    <div class="mdl-card__title blue darken-4 white-text">
+        <h2 class="mdl-card__title-text">{{ item['name'] }}</h2>
+    </div>
+    <div class="mdl-card__supporting-text" style="margin-bottom: 57px">
+        <div class="mdl-grid" style="font-weight: 400; font-size: medium; padding: 0">
+            <div class="mdl-cell left-align" style="width: 40%">
+                ${{ item['price'] }}
+            </div>
+            <div class="mdl-cell right-align" style="width: 40%">
+                Stock: {{ item['stock'] }}
+            </div>
+        </div>
+        <br>
+        {{ item['description'] }}
+    </div>
+    <div class="mdl-card__actions mdl-card--border right-align" style="height: 57px; position: absolute; bottom: 0">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect grey lighten-1" href="{{ url_for("item.view", item_id=item['id']) }}">
+            View
+        </a>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+
+  # Api
+  cart_api:
+    build:
+      context: ./
+      dockerfile: Dockerfile.api
+    container_name: cart_api
+    hostname: cart_api
+    ports:
+      - 5602:5600
+    restart: always
+
+  cart_cache_01:
+    image: library/redis:latest
+    container_name: cart_cache_01
+    hostname: cart_cache_01
+    restart: always
+

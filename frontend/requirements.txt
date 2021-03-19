@@ -1,0 +1,8 @@
+# Config Files
+python-dotenv
+
+# Frontend
+flask
+flask-login
+flask-wtf
+requests
